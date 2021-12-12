@@ -74,3 +74,29 @@ function handleWeatherData(data) {
     );
   });
 }
+
+function handleForecastData(data) {
+  let forecastDiv = document.getElementsByClassName("forecast")[0];
+  for (let i = 0; i < 40; i += 8) {
+    console.log(data.list[i]);
+    forecastDiv.insertAdjacentHTML(
+      "beforeend",
+      `
+    <div class="day">
+          <h3>${week[new Date(data.list[i].dt_txt).getDay()]}</h3>
+          <img src="http://openweathermap.org/img/wn/${
+            data.list[i].weather[0].icon
+          }@2x.png" />
+          <div class="description">${data.list[i].weather[0].description}</div>
+          <div class="temp">
+            <span class="high">${convertTemp(
+              data.list[i].main.temp_max
+            ).toFixed(0)}℃</span>/<span class="low">${convertTemp(
+        data.list[i].main.temp_min
+      ).toFixed(0)}℃</span>
+          </div>
+        </div>
+    `
+    );
+  }
+}
