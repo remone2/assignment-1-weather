@@ -43,3 +43,17 @@ getLatAndLon().then((data) => {
     .then((data2) => handleForecastData(data2))
     .catch((err) => console.log(err));
 });
+
+let week = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
+function convertTemp(value) {
+  return value - 273.15;
+}
