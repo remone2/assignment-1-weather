@@ -57,3 +57,20 @@ let week = [
 function convertTemp(value) {
   return value - 273.15;
 }
+
+function handleWeatherData(data) {
+  let weatherDiv = document.getElementsByClassName("current-conditions")[0];
+  data.weather.forEach((detail) => {
+    weatherDiv.insertAdjacentHTML(
+      "beforeend",
+      `
+    <h2>Current Conditions</h2>
+        <img src="http://openweathermap.org/img/wn/${detail.icon}@2x.png" />
+        <div class="current">
+          <div class="temp">${convertTemp(data.main.temp).toFixed(0)}℃</div>
+          <div class="condition">${detail.main}</div>
+        </div>
+    `
+    );
+  });
+}
